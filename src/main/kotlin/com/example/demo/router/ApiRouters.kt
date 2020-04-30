@@ -8,7 +8,7 @@ import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.server.*
 
 @Configuration
-class HttpRouters {
+class ApiRouters {
 
     @Bean
     fun articleRouter(articleHandler: ArticleHandler): RouterFunction<ServerResponse> {
