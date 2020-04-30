@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
-import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Component
@@ -39,8 +38,8 @@ class ArticleHandler(private val repository: ArticleRepository) {
 @Component
 class UserHandler(private val repository: UserRepository) {
 
-    fun findAll(request: ServerRequest): Flux<ServerResponse> {
-        return repository.findAll()
+    fun findAll(request: ServerRequest): Mono<ServerResponse> {
+        return repository.findAllByOrderByIdAsc()
                 .flatMap { user -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(user)) }
                 .switchIfEmpty(ServerResponse.notFound().build())
     }
