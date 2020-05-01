@@ -55,6 +55,13 @@
             <scope>runtime</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
         <!-- Kotlin依赖项 开始-->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
@@ -112,38 +119,5 @@
         </plugins>
     </build>
     <!-- Maven构建插件 结束 -->
-
-    <!-- Maven Profiles定义 开始 -->
-    <!-- 注意：Maven Profile不是Spring Profile -->
-    <!-- 注意：本项目中不要同时激活多个Maven Profile -->
-    <!-- 使用Maven指定Profile打包的用法：命令行： ./mvnw package -P profile_name -->
-    <profiles>
-        <!-- 开发阶段Profile，默认 -->
-        <profile>
-            <id>dev</id>
-            <properties>
-                <activatedProperties>dev</activatedProperties>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-devtools</artifactId>
-                    <scope>runtime</scope>
-                    <optional>true</optional>
-                </dependency>
-            </dependencies>
-        </profile>
-        <!-- 生产阶段Profile -->
-        <profile>
-            <id>prod</id>
-            <properties>
-                <activatedProperties>prod</activatedProperties>
-            </properties>
-        </profile>
-    </profiles>
-    <!-- Maven Profiles定义 结束 -->
 
 </project>
