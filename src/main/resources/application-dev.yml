@@ -6,3 +6,6 @@ logging:
     root: INFO
     web: DEBUG
     com.example: TRACE  # 指定本 package 的日志级别
+    org.springframework:
+      data:
+        r2dbc: DEBUG

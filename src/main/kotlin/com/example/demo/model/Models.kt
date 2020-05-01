@@ -6,6 +6,10 @@ import java.time.LocalDateTime
 
 // R2DBC 自然是不能像 JPA 一样直接进行高层抽象的
 
+// Kotlin 中的 data class 类似于 Lombok 中的 @Data
+// 会自动补充类的 equals() 、 toString() 等方法
+// 并免于编写 getter 、 setter
+
 data class Article(
         var title: String,
         var digest: String, // 摘要
