@@ -78,25 +78,6 @@
         </dependency>
         <!-- Kotlin依赖项 结束-->
 
-        <!-- 测试期依赖项 开始 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- 测试期依赖项 结束 -->
-
     </dependencies>
     <!-- 依赖项（Profile无关） 结束 -->
 
