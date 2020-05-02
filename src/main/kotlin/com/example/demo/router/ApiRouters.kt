@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.server.*
 
+// 参考： https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-fn-router-functions
+
 @Configuration
 class ApiRouters {
 

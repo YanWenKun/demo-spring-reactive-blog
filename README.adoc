@@ -1,1 +1,55 @@
-WIP
+= 使用响应式编程的 Blog Demo
+
+* Spring WebFlux
+
+* R2DBC
+
+写的稍微啰嗦一点。Kotlin 可以写得非常简略，但 DEMO 项目这样就不利于阅读了。
+
+项目灵感来自：
+
+https://spring.io/guides/tutorials/spring-boot-kotlin/
+
+样例项目里有测试，我这里偷懒就没写了。
+
+== 依赖项注意事项
+
+项目中用到了 spring-milestones 仓库，国内访问可能会很慢。
+
+建议在 IntelliJ IDEA 加载前，先跑一遍：
+
+ ./mvnw dependency:resolve dependency:resolve-plugins
+
+以解析并下载依赖，情况走代理。
+
+== H2 数据库 Web 控制台
+
+使用 Spring WebFlux (Netty) 这套，默认不会开 H2 Web Console。 项目因此做了单独配置，访问：
+
+ http://localhost:8082
+
+== API 端点
+
+ GET
+ /api/user
+ /api/user/{userName}
+ /api/article
+ /api/article/{slug}
+
+ 样例
+ http://localhost:8080/api/user
+ http://localhost:8080/api/user/user_y
+ http://localhost:8080/api/article
+ http://localhost:8080/api/article/hello-world
+
+== 体会
+
+* 目前 Spring Reactive 体系还在快速发展，早期文章的参考价值不高。
+* Google 找样例，会发现范式多种多样，写法千奇百怪。
+* 如果要整，**只看**官方文档。
+
+== 结论
+
+整套体系还是有待发展沉淀，形成最佳实践。目前 Spring Web 挺好。
+
+非要上性能，考虑 Micronaut。
