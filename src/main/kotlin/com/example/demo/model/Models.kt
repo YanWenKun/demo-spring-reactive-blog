@@ -12,17 +12,17 @@ import java.time.LocalDateTime
 
 data class Article(
         var title: String,
-        var digest: String, // 摘要
+        var digest: String, // 文章摘要
         var content: String,
-        var author: User?, // 目前用不了 @ManyToOne
+        var author: Long, // JPA 在这里可以直接指向 User? 类，但 R2DBC 自然用不了 @ManyToOne，需要另外处理外键。
         var postTime: LocalDateTime = LocalDateTime.now(),
         var slug: String = generateSlug(postTime, title),
-        @Id var id: Long? = null // 目前用不了 @GeneratedValue
+        @Id var id: Long? = null // R2DBC 自然用不了 @GeneratedValue
 )
 
 data class User(
         var userName: String,
         var displayName: String,
         var description: String? = null,
-        @Id var id: Long? = null // 目前用不了 @GeneratedValue
+        @Id var id: Long? = null // R2DBC 自然用不了 @GeneratedValue
 )
