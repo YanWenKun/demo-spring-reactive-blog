@@ -11,14 +11,15 @@ import java.util.*
  */
 fun generateSlug(dateTime: LocalDateTime, title: String): String {
     val date = dateTime.toLocalDate().toString()
-    val slug = Regex("[^A-Za-z0-9 ]").replace(title, "")
+    val titleSlug = Regex("[^A-Za-z0-9 ]").replace(title, "")
             .toLowerCase()
             .split(" ")
             .joinToString("-")
             .replace("-+".toRegex(), "-")
             .removeSuffix("-")
     // 这里偷了个懒，直接用 UUID 的 hashCode 作为尾缀
-    return date + "-" + slug + "-" + Integer.toHexString(UUID.randomUUID().hashCode())
+    val fullSlug = date + "-" + titleSlug + "-" + Integer.toHexString(UUID.randomUUID().hashCode())
+    return fullSlug.replace("-+".toRegex(), "-")
 }
 
 // 以下是 Spring 官方 Kotlin 快速上手教程中对应的部分功能，对中文地区意义不大
