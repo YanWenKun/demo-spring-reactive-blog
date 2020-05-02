@@ -16,8 +16,8 @@ class ArticleHandler(private val repository: ArticleRepository) {
      * 查找所有文章
      */
     fun findAll(request: ServerRequest): Mono<ServerResponse> {
-        return repository.findAllByOrderByPostTimeDesc()
-                .flatMap { article -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(article)) }
+        return repository.findAllByOrderByPostTimeDesc().collectList()
+                .flatMap { articles -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(articles!!)) }
                 .switchIfEmpty(ServerResponse.notFound().build())
     }
 
@@ -39,8 +39,8 @@ class ArticleHandler(private val repository: ArticleRepository) {
 class UserHandler(private val repository: UserRepository) {
 
     fun findAll(request: ServerRequest): Mono<ServerResponse> {
-        return repository.findAllByOrderByIdAsc()
-                .flatMap { user -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(user)) }
+        return repository.findAllByOrderByIdAsc().collectList()
+                .flatMap { users -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(users!!)) }
                 .switchIfEmpty(ServerResponse.notFound().build())
     }
 
