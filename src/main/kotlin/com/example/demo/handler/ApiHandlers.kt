@@ -9,6 +9,12 @@ import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import reactor.core.publisher.Mono
 
+// Handler 层
+// 参考： https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-fn-handler-functions
+// 这个概念来自于消息处理中的： Router -> Handler -> ...
+// Router 和 Handler 加在一起可以近似地理解为 Controller，只是变成了函数式风格。
+// 同样，为了易于理解，这里写得很罗嗦。
+
 @Component
 class ArticleHandler(private val repository: ArticleRepository) {
 

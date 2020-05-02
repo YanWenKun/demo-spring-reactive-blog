@@ -29,6 +29,9 @@ import java.sql.SQLException
 @EnableR2dbcRepositories
 internal class R2DBCConfiguration : AbstractR2dbcConfiguration() {
 
+    /**
+     * 显式配置 H2 连接
+     */
     @Bean
     override fun connectionFactory(): H2ConnectionFactory {
         return H2ConnectionFactory(

@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono
 // 相当于： 数据库异步查询 -> 数据访问层异步接收，并 *等待* 全部返回完毕 -> 打包成一个完整的数据包，传给下一个异步流程
 // 这与异步、流、响应式的初衷有悖。
 // 本项目中使用 .collectList() 来消费 Flux（变为 Mono），本质上并不是完整的全流程响应式，只是比上述例子更靠前一点。
-// 相当于： 数据库异步查询 -> 数据访问层异步接收，并流式传递给控制层 -> 控制层 *等待* 全部返回完毕 -> 打包成一个完整的 HTTP 响应，传给路由层
+// 相当于： 数据库异步查询 -> 数据访问层异步接收，并流式传递给 Handler 层 -> Handler 层 *等待* 全部返回完毕 -> 打包成一个完整的 HTTP 响应，传给路由层
 
 interface ArticleRepository : ReactiveCrudRepository<Article, Long> {
     fun findBySlug(slug: String): Mono<Article?>

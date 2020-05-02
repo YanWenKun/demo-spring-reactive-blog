@@ -22,7 +22,7 @@ fun generateSlug(dateTime: LocalDateTime, title: String): String {
     return fullSlug.replace("-+".toRegex(), "-")
 }
 
-// 以下是 Spring 官方 Kotlin 快速上手教程中对应的部分功能，对中文地区意义不大
+// 以下是 Spring 官方 Kotlin 快速上手教程中对应的部分功能，对中文地区意义不大，本项目中也没有用到。
 
 /**
  *  将文章标题（英文）转化为 SEO 友好的字符串

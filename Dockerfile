@@ -15,30 +15,23 @@ RUN mkdir -p /home/builder /build && \
         chown -R builder:builder /home/builder /build
 USER builder:builder
 
-# 配置 Maven 使用镜像源（阿里云）
-COPY --chown=builder:builder docs/maven/settings.xml /home/builder/.m2/settings.xml
-
 # 先让 Maven 解析并下载项目依赖，有利于 Docker 缓存
-# 注意这里激活了 prod 配置集，如需其它配置集可按需修改
 WORKDIR /build
 COPY pom.xml .
 RUN mvn --batch-mode \
         --quiet \
         --errors \
-        --activate-profiles prod \
         dependency:resolve \
         dependency:resolve-plugins
 
 # 编译项目
 # 注意这里跳过了测试环节，请根据流水线设计调整
-# 注意这里激活了 prod 配置集，如需其它配置集可按需修改
 COPY src ./src
 RUN mvn --batch-mode \
         --quiet \
         --errors \
         --define maven.test.skip=true \
         --define java.awt.headless=ture \
-        --activate-profiles prod \
         clean package
 
 # ===============================================
